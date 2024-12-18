@@ -1,0 +1,48 @@
+@media (prefers-color-scheme: dark) {
+  :root {
+      --bg-color: #121212;
+      --text-color: white;
+      --btn-bg-color: #222;
+      --btn-text-color: #aaa;
+  }
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.container {
+  text-align: center;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+#progress-bar-container {
+    width: 80%;
+    margin: 20px auto;
+    background-color: #eee;
+    height: 20px;
+    border-radius: 10px;
+    position: relative;
+}
+
+#progress-bar {
+    height: 100%;
+    width: 0;
+    background-color: #4CAF50;
+    border-radius: 10px;
+    transition: width 0.5s ease-in-out;
+}
+
