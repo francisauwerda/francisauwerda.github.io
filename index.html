@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-NZ">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Francis's website" />
     <meta name="author" content="Francis" />
+    <meta name="color-scheme" content="light dark" />
     <link
       rel="icon"
       href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%2210 0 100 100%22><text y=%22.90em%22 font-size=%2290%22>🍦</text></svg>"
@@ -13,20 +14,60 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="container">
+    <main class="container">
       <h1>Hey, I'm Francis</h1>
-      <img
-        class="hamster"
-        src="hamster.gif"
-        alt="Dancing hamster"
-        width="220"
-        height="220"
-      />
-      <div id="percentage"></div>
-      <div id="progress-bar-container">
-        <div id="progress-bar"></div>
+
+      <div class="hamster-wrap">
+        <video
+          id="hamster"
+          class="hamster"
+          poster="hamster-still.jpg"
+          muted
+          playsinline
+          loop
+          preload="metadata"
+          aria-label="Dancing hamster animation"
+          tabindex="-1"
+        >
+          <source src="hamster.webm" type="video/webm" />
+          <source src="hamster.mp4" type="video/mp4" />
+        </video>
+        <button
+          type="button"
+          id="hamster-toggle"
+          class="hamster-toggle"
+          aria-controls="hamster"
+          aria-pressed="false"
+        >
+          Pause
+        </button>
       </div>
-    </div>
+
+      <div class="year">
+        <p id="percentage" class="year-meta"></p>
+        <div
+          id="progress-bar-container"
+          role="progressbar"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="0"
+          aria-labelledby="percentage"
+        >
+          <div id="progress-bar"></div>
+          <div id="month-ticks" class="month-ticks" aria-hidden="true"></div>
+        </div>
+        <div id="month-labels" class="month-labels" aria-hidden="true"></div>
+      </div>
+
+      <p class="elsewhere">
+        <a
+          href="https://www.linkedin.com/in/francis-auwerda/"
+          rel="me noopener noreferrer"
+          target="_blank"
+          >LinkedIn</a
+        >
+      </p>
+    </main>
     <script src="script.js"></script>
   </body>
 </html>

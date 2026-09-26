@@ -1,62 +1,190 @@
+:root {
+  --bg-color: #fafafa;
+  --text-color: #1a1a1a;
+  --muted-color: #555;
+  --bar-track: #e6e6e6;
+  --bar-fill: #4caf50;
+  --tick-color: rgba(0, 0, 0, 0.18);
+  --focus: #0b57d0;
+  --button-bg: #ececec;
+  --button-text: #1a1a1a;
+  --link: #555;
+  --link-hover: #1a1a1a;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --bg-color: #121212;
-    --text-color: white;
-    --btn-bg-color: #222;
-    --btn-text-color: #aaa;
+    --text-color: #f2f2f2;
+    --muted-color: #a8a8a8;
+    --bar-track: #2a2a2a;
+    --bar-fill: #4caf50;
+    --tick-color: rgba(255, 255, 255, 0.22);
+    --focus: #8ab4f8;
+    --button-bg: #2a2a2a;
+    --button-text: #f2f2f2;
+    --link: #a8a8a8;
+    --link-hover: #f2f2f2;
   }
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   margin: 0;
   padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  min-height: 100dvh;
   background-color: var(--bg-color);
   color: var(--text-color);
-  transition: background-color 0.3s, color 0.3s;
 }
 
 .container {
   text-align: center;
-  padding: 1.5rem;
+  width: min(100%, 22rem);
+  padding: 1.5rem 1.25rem;
 }
 
 h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin: 0 0 1rem;
+}
+
+.hamster-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0 auto 1.25rem;
 }
 
 .hamster {
   display: block;
-  width: min(220px, 55vw);
+  width: 11.5rem;
+  max-width: 70%;
   height: auto;
-  margin: 0.5rem auto 1.25rem;
-  border-radius: 12px;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  background: #000;
 }
 
-#percentage {
-  margin-bottom: 0.75rem;
-  line-height: 1.5;
+.hamster-toggle {
+  appearance: none;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+  font: inherit;
+  font-size: 0.8rem;
+  line-height: 1.2;
+  color: var(--button-text);
+  background: var(--button-bg);
+  cursor: pointer;
+}
+
+.hamster-toggle:hover {
+  filter: brightness(0.96);
+}
+
+.hamster-toggle:focus-visible,
+.elsewhere a:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.year {
+  width: 100%;
+}
+
+.year-meta {
+  margin: 0 0 0.7rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: var(--muted-color);
 }
 
 #progress-bar-container {
-  width: 80%;
-  max-width: 420px;
-  margin: 20px auto;
-  background-color: #eee;
-  height: 20px;
-  border-radius: 10px;
   position: relative;
+  width: 100%;
+  margin: 0 auto;
+  background-color: var(--bar-track);
+  height: 0.65rem;
+  border-radius: 999px;
+  overflow: hidden;
 }
 
 #progress-bar {
   height: 100%;
   width: 0;
-  background-color: #4caf50;
-  border-radius: 10px;
+  background-color: var(--bar-fill);
+  border-radius: 999px;
   transition: width 0.5s ease-in-out;
+}
+
+.month-ticks {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.month-tick {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--tick-color);
+  transform: translateX(-0.5px);
+}
+
+.month-labels {
+  position: relative;
+  height: 1.1rem;
+  margin-top: 0.35rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.02em;
+  color: var(--muted-color);
+  opacity: 0.85;
+}
+
+.month-label {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+}
+
+.month-label.is-current {
+  color: var(--text-color);
+  font-weight: 700;
+  opacity: 1;
+}
+
+.elsewhere {
+  margin: 1.35rem 0 0;
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.elsewhere a {
+  color: var(--link);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.elsewhere a:hover {
+  color: var(--link-hover);
+  border-bottom-color: currentColor;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #progress-bar {
+    transition: none;
+  }
 }
